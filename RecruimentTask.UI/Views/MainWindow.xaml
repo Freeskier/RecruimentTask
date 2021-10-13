@@ -1,0 +1,42 @@
+﻿<Window x:Class="RecruimentTask.UI.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RecruimentTask.UI.ViewModels" d:DataContext="{d:DesignInstance Type=local:EmployeeViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="700">
+
+    <StackPanel Orientation="Horizontal">
+        <StackPanel>
+ <GroupBox Header="User controls" Margin="10" Padding="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" x:Name="Load" Height="30" Width="100" Margin="10" Content="Load" HorizontalAlignment="Left" Command="{Binding LoadDataCommand }" />
+                    <Button Grid.Row="1" x:Name="EditEmployee" Height="30" Width="100" Margin="10" Content="Edit Employee" HorizontalAlignment="Left" Command="{Binding EditEmployeeCommand }" IsEnabled="{Binding CanEdit}" />
+                    <Button Grid.Row="2" x:Name="DeteleData" Height="30" Width="100" Margin="10" Content="Delete data" HorizontalAlignment="Left" Command="{Binding DeteleDataCommand }"/>
+                </Grid>
+            </GroupBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <DataGrid x:Name="Employees" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Margin="15"
+                      ItemsSource="{Binding Employees}" SelectionMode="Single" SelectedItem="{Binding SelectedEmployee}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" Width="50" Binding="{Binding Path=EmployeeID}"/>
+                    <DataGridTextColumn Header="Name" IsReadOnly="True" Width="80" Binding="{Binding Path=Name}"/>
+                    <DataGridTextColumn Header="Surname" IsReadOnly="True" Width="80" Binding="{Binding Path=Surname}"/>
+                    <DataGridTextColumn Header="Email" IsReadOnly="True" Width="120" Binding="{Binding Path=Email}"/>
+                    <DataGridTextColumn Header="Phone" IsReadOnly="True" Width="100" Binding="{Binding Path=Phone}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </StackPanel>
+</Window>
